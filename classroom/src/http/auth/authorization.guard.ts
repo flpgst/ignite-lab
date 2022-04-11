@@ -20,10 +20,6 @@ export class AuthorizationGuard implements CanActivate {
   }
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    // const httpContext = context.switchToHttp();
-    // const req = httpContext.getRequest();
-    // const res = httpContext.getResponse();
-
     const { req, res } = GqlExecutionContext.create(context).getContext();
 
     const checkJWT = promisify(

@@ -7,11 +7,19 @@ interface CreateProductParams {
 }
 
 @Injectable()
-export class ProducsService {
+export class ProductsService {
   constructor(private prisma: PrismaService) {}
 
   listAllProducts() {
     return this.prisma.product.findMany();
+  }
+
+  getProductById(id: string) {
+    return this.prisma.product.findUnique({
+      where: {
+        id,
+      },
+    });
   }
 
   async createProduct({ title }: CreateProductParams) {
